@@ -1,0 +1,14 @@
+
+.box{
+  margin-top: 50px;
+border: 1px solid black;
+font-family: helvetica;
+max-height: 600px;
+overflow: hidden;
+margin-bottom: 20px;
+}
+p{
+  font-style: italic;
+  font-weight: bold;
+  font-variant: small-caps;
+}

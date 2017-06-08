@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Tech</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="index.css">
+<script>
+
+$(function(){
+  //creating a variable to store the content
+  var newsUpdate = "";
+  //.ajax () call
+  $.ajax({
+    url:"https://newsapi.org/v1/articles?source=the-verge&sortBy=top&apiKey=a60d133006fb44479dc8ca42e11b6c3e",
+//a function that is called if the call succeeds. result is the data returned from the server. Ajax event
+    success:function(result){
+      newsUpdate = result;
+      //.each(object,callback(index,object))
+      $.each(newsUpdate.articles,function(j,k)
+      {
+        $("#a").append(k.title + "<br> <hr>" );
+      });
+    }
+  });
+
+  $.ajax({
+    url: "https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=a60d133006fb44479dc8ca42e11b6c3e",
+    success:function(result){
+      newsUpdate=result;
+      $.each(newsUpdate.articles,function(j,k)
+    {
+      $(".b").append(k.title + "<br> <hr>" );
+    });
+    }
+  });
+
+/*  $.ajax({
+    url:" https://newsapi.org/v1/articles?source=techradar&sortBy=top&apiKey=a60d133006fb44479dc8ca42e11b6c3e",
+    success:function(result){
+      newsUpdate=result;
+      $.each(newsUpdate.articles,function(j,k)
+    {
+      $(".c").append(k.title + "<br> <hr>" );
+    });
+    }
+  });*/
+  //using get method instead of Ajax call
+  $.get("https://newsapi.org/v1/articles?source=techradar&sortBy=top&apiKey=a60d133006fb44479dc8ca42e11b6c3e", function(result){
+    newsUpdate=result;
+    $.each(newsUpdate.articles,function(j,k)
+  {
+    $(".c").append(k.title + "<br> <hr>" );
+  });
+});
+
+  });
+</script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+    <!--  <button>Get External Content</button>--></div>
+      <div id="a" class="box col-md-4"><p>THE VERGE</p><br></div>
+      <div class="box b col-md-4"><p>TECH CRUNCH</p><br></div>
+      <div class="box c col-md-4"><p>TECH RADAR</p><br></div>
+    </div>
+  </div>
+
+</body>
+</html>
